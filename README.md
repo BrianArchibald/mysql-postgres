@@ -25,3 +25,20 @@ create table users (
   age int
   email text unique not null
 )
+
+drop table users // delete db
+
+insert into users (first_name, last_name, age, email);
+values
+('bob', 'lastname', 19, 'bob@bob.com') // adding info into the db
+
+
+select first_name from users;  // see data in db
+
+select first_name, last_name from users;
+
+select * from users;  // will see all the rows for the db table
+
+alter table users drop colum age; // gets rid of age column
+
+alter table users add column age int;
