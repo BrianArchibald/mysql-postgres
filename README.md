@@ -53,10 +53,32 @@ WHERE
 select * from users where id = 3 or id = 4;
 select * from users where id = 3 and first_name = 'bob';
 select * from users where id in (3, 4, 5); // 3 users will return
-select * from users where where age > 10;
+select * from users where age > 10;
 
 COALESCE
 ---------------------------------
-select * from users where where coalesce(age, 15) > 10; // 15 is the default if age is null
+select * from users where coalesce(age, 15) > 10; // 15 is the default if age is null
+
+
+WHERE AND NULL
+------------------------------------
+select * from users where age is null;
+
+
+UPDATE
+-------------------------------------
+update users
+set age = 20, // or age + 1
+  last_name = 'tom'
+where id = 1; // doesnt have to be 3 lines
+
+DELETE
+---------------------------------------
+delete from users
+where id = 3;
+// you can do conditions as well
+
+
+
 
 
