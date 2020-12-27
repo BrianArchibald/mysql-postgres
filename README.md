@@ -78,7 +78,19 @@ delete from users
 where id = 3;
 // you can do conditions as well
 
+REFERENCES or ForeignKeyo
+----------------------------------------
+create table posts(
+  id serial primary key,
+  title text not null,
+  body test default 'something',
+  creatorID int referenceees users(id) not null
+);
 
+// creatorID references the prev table
+
+insert into posts (title, body, creatorID)
+values ('first post', 1)
 
 
 
