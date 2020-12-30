@@ -78,8 +78,12 @@ delete from users
 where id = 3;
 // you can do conditions as well
 
-REFERENCES or ForeignKeyo
+REFERENCES or ForeignKey
 ----------------------------------------
+basically connecting one table to another table user to post, usually you reference the primary key on the other table
+
+-- 1 to many relationship or 1 to m --
+
 create table posts(
   id serial primary key,
   title text not null,
@@ -92,5 +96,12 @@ create table posts(
 insert into posts (title, body, creatorID)
 values ('first post', 1)
 
+insert into posts (title, body, creatorID)
+values ('second something post', 1)
 
+
+INNER JOINS - getting info from two tables
+------------------------------------------
+select first_name from users
+inner join posts on users.id = posts.creatorID
 
