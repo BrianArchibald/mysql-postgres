@@ -105,3 +105,35 @@ INNER JOINS - getting info from two tables
 select first_name from users
 inner join posts on users.id = posts.creatorID
 
+-- inner join only gets users wtih posts created or if the factors are true
+-- x * (y,z) = (x,y), (x,z)
+
+LEFT JOIN
+-----------------------------------------
+select first_name from users
+left join posts on users.id = posts.creatorID
+
+-- this also grabs other users who don't have posts -- '
+
+GIVE COLUMNS ALIAS
+---------------------------------------
+
+select u.id, p.id post_id, first_name, title from users u -- also post_id is a alias for p.id
+inner join posts p on u.id = p.creatorId  -- posts p , posts is referred to p now
+
+WHERE
+---------------------------------------
+have access to both tables when there is a join
+
+select u.id, p.id post_id, first_name, title from users u
+inner join posts p on u.id = p.creatorId
+where u.id = 1;
+-- all rows where u.id is 1
+
+LIKE
+--------------------------------------
+% = pattern matches anynumber of chars
+
+select u.id, p.id post_id, first_name, title from users u
+inner join posts p on u.id = p.creatorId
+where p.title like '%second%' -- any number of characters before or after the word second
