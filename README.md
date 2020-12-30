@@ -137,3 +137,24 @@ LIKE
 select u.id, p.id post_id, first_name, title from users u
 inner join posts p on u.id = p.creatorId
 where p.title like '%second%' -- any number of characters before or after the word second
+
+-- %post .. it has to end with the word post --
+-- post% .. " " starts with post
+-- %post% .. anywhere
+-- %my%post% is also valid
+it is case sensitive
+
+ilike -- ignores case sensitivit
+
+
+ -- 1 to many with posts, single post can have many comments
+ -- 1 to many with users, single user can have many comments
+create table comments (
+  id serial primary key,
+  message text not null,
+  post_id int references posts(id) -- this references what post id the comment
+  creator_id int references user(id)
+
+
+
+)
