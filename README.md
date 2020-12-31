@@ -154,7 +154,13 @@ create table comments (
   message text not null,
   post_id int references posts(id) -- this references what post id the comment
   creator_id int references user(id)
-
-
-
 )
+
+insert into comments
+(message post_id, creator_id)
+values ('hello, nice post', 2, 1)
+
+-- there is a comment (c.message) that is associted with a post (p.title) and this was written by a user (u.first_name)
+select c.message, p.title, u.first_name from comments c
+inner join posts p on c.post_id = p.id;
+inner join users u on p.'creatorID' = u.id; --who wrote the post
