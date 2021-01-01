@@ -161,6 +161,23 @@ insert into comments
 values ('hello, nice post', 2, 1)
 
 -- there is a comment (c.message) that is associted with a post (p.title) and this was written by a user (u.first_name)
-select c.message, p.title, u.first_name from comments c
+
+select c.message, p.title, u.first_name, u2.first_name_for_post,
+from comments c
 inner join posts p on c.post_id = p.id;
-inner join users u on p.'creatorID' = u.id; --who wrote the post
+inner join users u on p.'creatorID' = u.id;   --who wrote the post
+inner join users u22 on c.creator_id = u2.id    -- find out who wrote the comment
+
+-- storing favorites or likes
+-- user -- post relationship
+-- NOT a 1 to many relationship , user can fav more than one post and a post can have multiple favs on it
+-- Many to many relationship
+-- usually called a join table
+
+create table favorites(
+  user_id int references users(id), -- the user who fav somethingh
+  post_id int references posts(id), -- what post was favd
+  primary key (user_id, post_id) -- composite key, we are using more than a single column
+
+)
+
