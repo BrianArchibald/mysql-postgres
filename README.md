@@ -174,10 +174,26 @@ inner join users u22 on c.creator_id = u2.id    -- find out who wrote the commen
 -- Many to many relationship
 -- usually called a join table
 
+-- This is a JOIN table
 create table favorites(
   user_id int references users(id), -- the user who fav somethingh
   post_id int references posts(id), -- what post was favd
   primary key (user_id, post_id) -- composite key, we are using more than a single column
-
 )
 
+user_id = 1
+post_id = 1
+
+user_di = 1
+post_id = 2 -- he favd 2 posts
+
+select * from users;
+select * from posts;
+
+--EXAMPLE
+insert into favorites
+(user_id, post_id)
+value(1, 10) -- user 1 is now favd post 10
+
+-- can't do this again, will get duplicate key error due to primary key-- can't favd this post again
+-- but multiple users can fav a post
