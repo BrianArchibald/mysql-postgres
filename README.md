@@ -19,6 +19,21 @@ cancel out of shell -- \q
 dbeaver - gui for working with db
 file, new, postgres - to start new
 
+
+TLDR. SUMMARY
+----------------------------------
+1. create a table for each thing
+  -user
+  -post
+  -comment
+2. setup relationships
+  - m to m (many users to many posts)
+    - join table with foreign keys
+  - 1 to m (one user maps to many posts)
+      - foreign key -- the fk is set on many posts and links to the one user
+  - 1 to 1 (profile for a user)
+      - usually collapse into a single table
+
 CREATE TABLE
 ---------------------------------------
 create table users (
@@ -197,3 +212,20 @@ value(1, 10) -- user 1 is now favd post 10
 
 -- can't do this again, will get duplicate key error due to primary key-- can't favd this post again
 -- but multiple users can fav a post
+
+
+ABILITY TO FRIEND SOMEONE
+A TABLE CONNECTED TO ITSelf
+________________________________
+
+ -- user to user table
+ -- NOT a 1 to many, this is a many to many, bob can be friends with many, tom can be friends with many
+
+ create table friends (
+  user_id1 int references user(id),
+  userid2 int references users(id),
+  primary key (user_id1, user_id2)
+ )
+
+ insert into friends (users_id1, user_id2)
+ values(2, 4);
