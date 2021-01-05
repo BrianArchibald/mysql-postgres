@@ -229,3 +229,23 @@ ________________________________
 
  insert into friends (users_id1, user_id2)
  values(2, 4);
+
+
+ _____________________________
+ GETTING INFO FROM DB
+ ------------------------------
+ -- feed of posts
+
+ select p.created_at, p.title,
+  substr(p.body, 1, 30)  -- start at 1 and get 30 chars
+ from posts p
+ inner join users u on p."creatorID" = u.id; -- get all posts and get users who made the posts
+
+ -- order, limit, substr in ex above, offset
+
+ select * from posts p
+ inner join users u on p."creatorID" = u.id
+ order by created_at desc
+ offset 10 -- number of values per page
+ limit 20;
+
